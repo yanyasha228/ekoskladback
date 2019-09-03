@@ -1,0 +1,520 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.19
+-- Dumped by pg_dump version 9.5.19
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: groups; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.groups (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+
+ALTER TABLE public.groups OWNER TO postgres;
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.products (
+    id integer NOT NULL,
+    css_query_for_validating character varying(255),
+    currency character varying(255),
+    url_for_validating_exist character(1),
+    last_validation_date timestamp without time zone,
+    main_image character varying(255),
+    name character varying(255),
+    price real,
+    status integer,
+    url_for_validating character varying(255),
+    validation_status character(1),
+    group_id integer
+);
+
+
+ALTER TABLE public.products OWNER TO postgres;
+
+--
+-- Data for Name: groups; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.groups (id, name) FROM stdin;
+72942962	Керамические панели
+65491143	Картриджные фильтры
+65491102	Бытовые фильтры водоподготовки
+65490963	Станции очистки воды
+58166727	Забор из ДПК
+58161125	Террасная доска 
+53155865	Бассейны композитные
+46693029	Фитинги 
+45987122	Очиститель для труб
+45984609	Трубы и крепление
+45983679	Тройники и крестовины ПВХ
+45983313	Редукционное кольцо ПВХ 
+45982992	Обратный клапан ПВХ
+45979475	Муфта ПВХ
+45979179	Краны и запчасти
+45978384	Колено ПВХ
+45978223	Клей для труб ПВХ
+45978149	Фланец ПВХ
+45977214	Заглушки 
+38376159	Камины
+33249837	Хлор
+\.
+
+
+--
+-- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.products (id, css_query_for_validating, currency, url_for_validating_exist, last_validation_date, main_image, name, price, status, url_for_validating, validation_status, group_id) FROM stdin;
+1022202085	\N	UAH	F	\N	https://images.ua.prom.st/1926803862_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Venecia ПКИ 750W 120х60см	2190	0	\N	F	72942962
+1022198113	\N	UAH	F	\N	https://images.ua.prom.st/1926803266_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Венеция ПКИ 350W 60х60 см	1460	0	\N	F	72942962
+1022194109	\N	UAH	F	\N	https://images.ua.prom.st/1926799817_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Венеция ПКИ 300w 50х50 см	1370	0	\N	F	72942962
+1022187885	\N	UAH	F	\N	https://images.ua.prom.st/1926793065_w200_h200_obogrevatel-energosberegayuschij-keramicheskij.jpg	Обогреватель энергосберегающий керамический Венеция ЭПКИ 750w 120x60 см	1900	0	\N	F	72942962
+1022180472	\N	UAH	F	\N	https://images.ua.prom.st/1926781656_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Венеция до 10 м²  ЭПКИ 300w 60х60см	1200	0	\N	F	72942962
+1022161923	\N	UAH	F	\N	https://images.ua.prom.st/1926744268_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Venecia до 5 м² ЭПКИ 250w горизонтальная 60х30 см/вертикальная 30х60 см	1100	0	\N	F	72942962
+1022154708	\N	UAH	F	\N	https://images.ua.prom.st/1926738916_w200_h200_infrakrasnyj-keramicheskij-obogrevatel.jpg	Инфракрасный керамический обогреватель Венеция Стандарт ЭПКИ 300 ( 50*50)	1100	0	\N	F	72942962
+1022153723	\N	UAH	F	\N	https://images.ua.prom.st/1926726942_w200_h200_energosberegayuschij-keramicheskij-obogrevatel.jpg	Энергосберегающий керамический обогреватель Venecia ПКИТ 750Вт 120х60см с электронным программатором	2935	0	\N	F	72942962
+1022151686	\N	UAH	F	\N	https://images.ua.prom.st/1926722484_w200_h200_energosberegayuschij-keramicheskij-obogrevatel.jpg	Энергосберегающий керамический обогреватель Venecia ПКИТ 350Вт 60x60см с электронным программатором	2205	0	\N	F	72942962
+1021854256	\N	UAH	F	\N	https://images.ua.prom.st/1925614603_w200_h200_energosberegayuschij-keramicheskij-obogrevatel.jpg	Энергосберегающий керамический обогреватель Venecia ПКИТ 300Вт 50Х50см с электронным программатором	2115	0	\N	F	72942962
+1021853742	\N	UAH	F	\N	https://images.ua.prom.st/1925598485_w200_h200_bio-konvektor-s-elektronnym.jpg	Био-конвектор с электронным терморегулятором-программатором ПКК 1350 w 120х60 см	3425	0	\N	F	72942962
+1021851987	\N	UAH	F	\N	https://images.ua.prom.st/1925583147_w200_h200_bio-konvektor-venetsiya-s.jpg	Био-конвектор Венеция с электронным терморегулятором-программатором ПКК 700w 60х60см	2575	0	\N	F	72942962
+1021840842	\N	UAH	F	\N	https://images.ua.prom.st/1925492893_w200_h200_bio-konvektor-keramicheskij-energosberegayuschij.jpg	Био-конвектор керамический энергосберегающий Венеция ПКК 1350w 120х60см механ. терморег.	2850	0	\N	F	72942962
+1021838356	\N	UAH	F	\N	https://images.ua.prom.st/1925431548_w200_h200_bio-konvektor-keramicheskij-infrakrasnyj.jpg	Био-конвектор керамический инфракрасный энергосберегающий ВЕНЕЦИЯ ПКК 700Вт 60x60 см механ. терморег.	2000	0	\N	F	72942962
+1021837854	\N	UAH	F	\N	https://images.ua.prom.st/1925394794_w200_h200_obogrevatel-zerkalo-pkit.jpg	Обогреватель Зеркало ПКИТ 250 w (60Х30 / 30Х60)	2100	0	\N	F	72942962
+1021837019	\N	UAH	F	\N	https://images.ua.prom.st/1925373301_w200_h200_panel-keramicheskaya-infrakrasnaya.jpg	Панель керамическая инфракрасная с встроенным терморегулятором 120х60см Венеция ПКИТ 750 w	2360	0	\N	F	72942962
+1021828084	\N	UAH	F	\N	https://images.ua.prom.st/1925332645_w200_h200_energosberegayuschij-keramicheskij-obogrevatel.jpg	Энергосберегающий керамический обогреватель с встроенным терморегулятором Венеция ПКИТ 350	1630	0	\N	F	72942962
+1021824945	\N	UAH	F	\N	https://images.ua.prom.st/1925226581_w200_h200_energosberegayuschaya-keramicheskaya-panel.jpg	Энергосберегающая керамическая панель Венеция 250 w ПКИТ горизонтальная 60х30 см / вертикальная 30х60 см	1540	0	\N	F	72942962
+1001849702	\N	USD	F	\N	https://images.ua.prom.st/1874136647_w200_h200_hlornye-tabletki-froggy.jpg	Хлорные таблетки Froggy Desiclean Complex 20 (25 кг)	185.399994	0	\N	F	33249837
+1001847402	\N	USD	F	\N	https://images.ua.prom.st/1874135207_w200_h200_hlornye-tabletki-froggy.jpg	Хлорные таблетки Froggy Desiclean Complex 20 (4 кг)	32.8400002	0	\N	F	33249837
+1001836944	\N	USD	F	\N	https://images.ua.prom.st/1874103154_w200_h200_shokovyj-hlor-v.jpg	Шоковый хлор в таблетках Froggy ShockChlor Tabs 20 (50 кг)	336.959991	0	\N	F	33249837
+1001834864	\N	USD	F	\N	https://images.ua.prom.st/1874097623_w200_h200_shock-chlor-granules.jpg	Shock Chlor Granules Froggy 50 кг	304.720001	0	\N	F	33249837
+1001833024	\N	USD	F	\N	https://images.ua.prom.st/1874094745_w200_h200_shock-chlor-granules.jpg	Shock Chlor Granules Froggy 25 кг	160.220001	3	\N	F	33249837
+1001832045	\N	USD	F	\N	https://images.ua.prom.st/1874092278_w200_h200_shock-chlor-granules.jpg	Shock Chlor Granules Froggy 8 кг	54.1899986	3	\N	F	33249837
+1001829334	\N	USD	F	\N	https://images.ua.prom.st/1874088458_w200_h200_shock-chlor-granules.jpg	Shock Chlor Granules Froggy 1 кг	8.22999954	3	\N	F	33249837
+1001687227	\N	USD	F	\N	https://images.ua.prom.st/1873762899_w200_h200_dlitelnyj-hlor-v.jpg	Длительный хлор в таблетках Froggy LongChlor Tabs 20 (25 кг) Для дезинфекции воды в бассейнах	175.729996	0	\N	F	33249837
+1001677685	\N	USD	F	\N	https://images.ua.prom.st/1873756296_w200_h200_dlitelnyj-hlor-v.jpg	Длительный хлор в таблетках Froggy LongChlor Tabs 20 (25 кг)	175.729996	0	\N	F	33249837
+1001675114	\N	USD	F	\N	https://images.ua.prom.st/1873754213_w200_h200_dlitelnyj-hlor-v.jpg	Длительный хлор в таблетках Froggy LongChlor Tabs 20 (4 кг) Для дезинфекции воды в бассейнах 	30.5799999	0	\N	F	33249837
+957170098	\N	EUR	F	\N	https://images.ua.prom.st/1751587034_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 30 SE BIO	1150	3	\N	F	65491102
+957170097	\N	EUR	F	\N	https://images.ua.prom.st/1751587033_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 20 SE BIO	971	3	\N	F	65491102
+957170096	\N	EUR	F	\N	https://images.ua.prom.st/1751587032_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 10 SE BIO	955	3	\N	F	65491102
+957170095	\N	EUR	F	\N	https://images.ua.prom.st/1751587031_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 30 SE	1108	3	\N	F	65491102
+957170094	\N	EUR	F	\N	https://images.ua.prom.st/1751587013_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 20 SE	920	3	\N	F	65491102
+957170093	\N	EUR	F	\N	https://images.ua.prom.st/1751587012_w200_h200_bwt-aqa-perla.jpg	BWT AQA PERLA 10 SE	900	3	\N	F	65491102
+957170092	\N	EUR	F	\N	https://images.ua.prom.st/1751587011_w200_h200_bwt-erf-7718.jpg	BWT ERF 77/18	1249	3	\N	F	65491102
+957170091	\N	EUR	F	\N	https://images.ua.prom.st/1751587010_w200_h200_bwt-erf-7716.jpg	BWT ERF 77/16	896	3	\N	F	65491102
+957170090	\N	EUR	F	\N	https://images.ua.prom.st/1751587009_w200_h200_bwt-erf-7714.jpg	BWT ERF 77/14	813	3	\N	F	65491102
+957170089	\N	EUR	F	\N	https://images.ua.prom.st/1751587008_w200_h200_bwt-erf-7713.jpg	BWT ERF 77/13	745	3	\N	F	65491102
+957170088	\N	EUR	F	\N	https://images.ua.prom.st/1751587007_w200_h200_bwt-erf-7712.jpg	BWT ERF 77/12	799	3	\N	F	65491102
+957170087	\N	EUR	F	\N	https://images.ua.prom.st/1751587005_w200_h200_bwt-erf-7710.jpg	BWT ERF 77/10	648	3	\N	F	65491102
+957170086	\N	EUR	F	\N	https://images.ua.prom.st/1751587004_w200_h200_bwt-erf-7708.jpg	BWT ERF 77/08	655	3	\N	F	65491102
+957170085	\N	EUR	F	\N	https://images.ua.prom.st/1751587003_w200_h200_kit-bonaqua-ro.jpg	KIT BONAQUA RO - комплект сменных картриджей (4 шт.)	40	0	\N	F	65491102
+957170084	\N	EUR	F	\N	https://images.ua.prom.st/1751586901_w200_h200_bwt-aqa-source.jpg	BWT AQA SOURCE	300	3	\N	F	65491102
+957170083	\N	EUR	F	\N	https://images.ua.prom.st/1751586900_w200_h200_bwt-source-ro.jpg	BWT SOURCE RO	275	3	\N	F	65491102
+957170082	\N	EUR	F	\N	https://images.ua.prom.st/1751586898_w200_h200_woda-pure-120.jpg	WODA PURE 120	143	0	\N	F	65491102
+957170081	\N	EUR	F	\N	https://images.ua.prom.st/1751586896_w200_h200_filtr-vody-bwt.jpg	Фильтр воды BWT E1 HWS 1''	250	3	\N	F	65491102
+957170080	\N	EUR	F	\N	https://images.ua.prom.st/1751586894_w200_h200_filtr-vody-bwt.jpg	Фильтр воды BWT E1 HWS ¾''	250	3	\N	F	65491102
+957170079	\N	EUR	F	\N	https://images.ua.prom.st/1751586893_w200_h200_filtr-vody-bwt.jpg	Фильтр воды BWT F1 HWS 1¼˝	248	3	\N	F	65491102
+957170035	\N	EUR	F	\N	https://images.ua.prom.st/1751586751_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S100	69667	0	\N	F	65490963
+957170034	\N	EUR	F	\N	https://images.ua.prom.st/1751586750_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S80	64667	0	\N	F	65490963
+957170033	\N	EUR	F	\N	https://images.ua.prom.st/1751586749_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S60	42222	0	\N	F	65490963
+957170032	\N	EUR	F	\N	https://images.ua.prom.st/1751586748_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S50	36978	0	\N	F	65490963
+957170031	\N	EUR	F	\N	https://images.ua.prom.st/1751586747_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S40	31644	0	\N	F	65490963
+957170030	\N	EUR	F	\N	https://images.ua.prom.st/1751586746_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S30	25444	0	\N	F	65490963
+957170029	\N	EUR	F	\N	https://images.ua.prom.st/1751586745_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S20	19111	0	\N	F	65490963
+957170028	\N	EUR	F	\N	https://images.ua.prom.st/1751586744_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S15	14489	0	\N	F	65490963
+957170027	\N	EUR	F	\N	https://images.ua.prom.st/1751586743_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S12	12889	0	\N	F	65490963
+957170026	\N	EUR	F	\N	https://images.ua.prom.st/1751586679_w200_h200_stantsiya-biologicheskoj-ochistki.jpg	Станция биологической очистки сточных вод WATEX S10	11556	0	\N	F	65490963
+957170025	\N	EUR	F	\N	https://images.ua.prom.st/1751586678_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 50	8250	0	\N	F	65490963
+957170024	\N	EUR	F	\N	https://images.ua.prom.st/1751586677_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 35	7050	0	\N	F	65490963
+957170023	\N	EUR	F	\N	https://images.ua.prom.st/1751586676_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 20	5320	0	\N	F	65490963
+957170022	\N	EUR	F	\N	https://images.ua.prom.st/1751586675_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 12	3310	0	\N	F	65490963
+957170021	\N	EUR	F	\N	https://images.ua.prom.st/1751586674_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 8	2870	0	\N	F	65490963
+957170020	\N	EUR	F	\N	https://images.ua.prom.st/1751586672_w200_h200_stantsiya-ochistki-watex.jpg	Станция очистки WATEX ECD 4	2600	0	\N	F	65490963
+923377559	\N	EUR	F	\N	https://images.ua.prom.st/1663604533_w200_h200_ugol-dpk-gamrat.jpg	Угол ДПК Gamrat графит	6.67999983	0	\N	F	58166727
+923369802	\N	EUR	F	\N	https://images.ua.prom.st/1663597872_w200_h200_ugol-dpk-gamrat.jpg	Угол ДПК Gamrat темно коричневый	6.67999983	0	\N	F	58166727
+923367619	\N	EUR	F	\N	https://images.ua.prom.st/1663592123_w200_h200_polskij-dolgovechnyj-zabor.jpg	Польский долговечный забор из ДПК Gamrat темно коричневый.	71.6999969	0	\N	F	58166727
+923364262	\N	EUR	F	\N	https://images.ua.prom.st/1710252254_w200_h200_zabor-iz-dpk.jpg	Забор из ДПК Gamrat графит. Качественный долговечный пластиковый забор Польша	71.6999969	0	\N	F	58166727
+957168324	\N	EUR	F	\N	https://images.ua.prom.st/1751579944_w200_h200_terrasnaya-doska-style.jpg	Террасная доска Style Plus-MAX WoodPlastic	68.5999985	0	\N	F	58161125
+957168323	\N	EUR	F	\N	https://images.ua.prom.st/1751579934_w200_h200_terrasnaya-doska-forest.jpg	Террасная доска Forest Plus-MAX WoodPlastic	68.5999985	0	\N	F	58161125
+957168322	\N	EUR	F	\N	https://images.ua.prom.st/1751579925_w200_h200_terrasnaya-doska-forest-max.jpg	Террасная доска Forest-MAX WoodPlastic	67.1999969	0	\N	F	58161125
+957168321	\N	EUR	F	\N	https://images.ua.prom.st/1751579915_w200_h200_terrasnaya-doska-star-max.jpg	Террасная доска Star-MAX WoodPlastic	67.1999969	0	\N	F	58161125
+957168320	\N	EUR	F	\N	https://images.ua.prom.st/1751579713_w200_h200_terrasnaya-doska-nature.jpg	Террасная доска Nature Plus WoodPlastic	60.2000008	0	\N	F	58161125
+957168319	\N	EUR	F	\N	https://images.ua.prom.st/1751579704_w200_h200_terrasnaya-doska-nature.jpg	Террасная доска Nature WoodPlastic	67.1999969	0	\N	F	58161125
+957168318	\N	EUR	F	\N	https://images.ua.prom.st/1751579698_w200_h200_terrasnaya-doska-style.jpg	Террасная доска Style Plus WoodPlastic	60.2000008	0	\N	F	58161125
+957168317	\N	EUR	F	\N	https://images.ua.prom.st/1751579689_w200_h200_terrasnaya-doska-forest.jpg	Террасная доска Forest Plus WoodPlastic	60.2000008	0	\N	F	58161125
+957168316	\N	EUR	F	\N	https://images.ua.prom.st/1751579680_w200_h200_terrasnaya-doska-forest.jpg	Террасная доска Forest WoodPlastic	50.4000015	0	\N	F	58161125
+957168315	\N	EUR	F	\N	https://images.ua.prom.st/1751579671_w200_h200_terrasnaya-doska-star.jpg	Террасная доска Star WoodPlastic	50.0400009	0	\N	F	58161125
+957168314	\N	USD	F	\N	https://images.ua.prom.st/1751579670_w200_h200_montazhnaya-rejka-laga.jpg	Монтажная рейка (лага)	13	0	\N	F	58161125
+957168313	\N	USD	F	\N	https://images.ua.prom.st/1751579661_w200_h200_terrasnaya-doska-watex.jpg	Террасная доска WATEX - Coffe	66	0	\N	F	58161125
+957168312	\N	USD	F	\N	https://images.ua.prom.st/1751579652_w200_h200_terrasnaya-doska-watex.jpg	Террасная доска WATEX - Light Grey	66	0	\N	F	58161125
+957168311	\N	USD	F	\N	https://images.ua.prom.st/1751579643_w200_h200_terrasnaya-doska-watex.jpg	Террасная доска WATEX - Wood	66	0	\N	F	58161125
+923357223	\N	EUR	F	\N	https://images.ua.prom.st/1663563667_w200_h200_dolgovechnaya-terrasnaya-doska.jpg	Долговечная террасная доска Gamrat темно коричневый. Польша. Древесный композит	60.9500008	0	\N	F	58161125
+923353120	\N	EUR	F	\N	https://images.ua.prom.st/1663559518_w200_h200_dolgovechnaya-terrasnaya-doska.jpg	Долговечная террасная доска. Именная гарантия 25 лет. Настоящий древесный композит. Серый	60.9500008	0	\N	F	58161125
+923340424	\N	EUR	F	\N	https://images.ua.prom.st/1712241428_w200_h200_dolgovechnaya-terrasnaya-doska.jpg	Долговечная террасная доска Gamrat светло коричневый. Польша. Древесный композит	60.9500008	0	\N	F	58161125
+923328141	\N	EUR	F	\N	https://images.ua.prom.st/1712242579_w200_h200_terrasnaya-doska-gamrat.jpg	Террасная доска Gamrat графит. Польша. Настоящий древесный композит	60.9500008	0	\N	F	58161125
+923316238	\N	EUR	F	\N	https://images.ua.prom.st/1712243636_w200_h200_dolgovechnaya-terrasnaya-doska.jpg	Долговечная террасная доска Gamrat орех	60.8499985	0	\N	F	58161125
+957168503	\N	USD	F	\N	https://images.ua.prom.st/1751582200_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Байкал	25000	0	\N	F	53155865
+957168502	\N	USD	F	\N	https://images.ua.prom.st/1751582195_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Маями	25000	0	\N	F	53155865
+957168501	\N	USD	F	\N	https://images.ua.prom.st/1751582125_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Марсель	18500	0	\N	F	53155865
+957168500	\N	USD	F	\N	https://images.ua.prom.st/1751582123_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Торренс	18500	0	\N	F	53155865
+957168499	\N	USD	F	\N	https://images.ua.prom.st/1751582121_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Мичиган	18500	0	\N	F	53155865
+957168498	\N	USD	F	\N	https://images.ua.prom.st/1751582119_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Эльдорадо	17200	0	\N	F	53155865
+957168497	\N	USD	F	\N	https://images.ua.prom.st/1751582115_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Онтарио	17000	0	\N	F	53155865
+957168496	\N	USD	F	\N	https://images.ua.prom.st/1751582112_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Рио	17000	0	\N	F	53155865
+957168495	\N	USD	F	\N	https://images.ua.prom.st/1751582107_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Балатон	14500	0	\N	F	53155865
+957168494	\N	USD	F	\N	https://images.ua.prom.st/1751582104_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Баффало	14500	0	\N	F	53155865
+957168493	\N	USD	F	\N	https://images.ua.prom.st/1751582101_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Венеция	13700	0	\N	F	53155865
+957168492	\N	USD	F	\N	https://images.ua.prom.st/1751582097_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Виктория	13700	0	\N	F	53155865
+957168491	\N	USD	F	\N	https://images.ua.prom.st/1751582037_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Леман	11000	0	\N	F	53155865
+957168490	\N	USD	F	\N	https://images.ua.prom.st/1751582034_w200_h200_chasha-kompozitnaya-dlya.jpg	Чаша композитная для бассейна - Ницца	10500	0	\N	F	53155865
+957168489	\N	USD	F	\N	https://images.ua.prom.st/1751582030_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Гурон	8400	0	\N	F	53155865
+957168488	\N	USD	F	\N	https://images.ua.prom.st/1751582025_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Одесса	7800	0	\N	F	53155865
+957168487	\N	USD	F	\N	https://images.ua.prom.st/1751582022_w200_h200_chasha-dlya-bassejna.jpg	Чаша для бассейна композитная - Тахо	7500	0	\N	F	53155865
+957168486	\N	USD	F	\N	https://images.ua.prom.st/1751582020_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - КУПЕЛЬ	4600	0	\N	F	53155865
+957168484	\N	USD	F	\N	https://images.ua.prom.st/1751582017_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - Рицца	1300	0	\N	F	53155865
+957168483	\N	USD	F	\N	https://images.ua.prom.st/1751582014_w200_h200_kompozitnaya-chasha-dlya.jpg	Композитная чаша для бассейна - ЭДЕН	2200	0	\N	F	53155865
+839280532	\N	EUR	F	\N	https://images.ua.prom.st/1502476913_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 355х315	463.829987	0	\N	F	46693029
+839280531	\N	EUR	F	\N	https://images.ua.prom.st/1502476644_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 355х200	409.51001	0	\N	F	46693029
+839280530	\N	EUR	F	\N	https://images.ua.prom.st/1502476510_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 315х250	339.390015	0	\N	F	46693029
+839280529	\N	EUR	F	\N	https://images.ua.prom.st/1502476185_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 315х200	311.079987	0	\N	F	46693029
+839280528	\N	EUR	F	\N	https://images.ua.prom.st/1502475566_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 315х160	282.809998	0	\N	F	46693029
+839280527	\N	EUR	F	\N	https://images.ua.prom.st/1502475313_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 250х225	147.059998	0	\N	F	46693029
+839280526	\N	EUR	F	\N	https://images.ua.prom.st/1502475025_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 250х200	141.399994	0	\N	F	46693029
+839280525	\N	EUR	F	\N	https://images.ua.prom.st/1502474128_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 250х160	135.75	0	\N	F	46693029
+839280524	\N	EUR	F	\N	https://images.ua.prom.st/1502474614_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 250х110	130.119995	0	\N	F	46693029
+839280523	\N	EUR	F	\N	https://images.ua.prom.st/1502473550_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 225х200	113.129997	0	\N	F	46693029
+839280522	\N	EUR	F	\N	https://images.ua.prom.st/1502473368_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 225х160	107.470001	0	\N	F	46693029
+839280521	\N	EUR	F	\N	https://images.ua.prom.st/1502473045_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 225х110	102.199997	0	\N	F	46693029
+839280520	\N	EUR	F	\N	https://images.ua.prom.st/1502472864_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 200х160	90.5100021	0	\N	F	46693029
+839280519	\N	EUR	F	\N	https://images.ua.prom.st/1502472661_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 200х110	84.8499985	0	\N	F	46693029
+839280518	\N	EUR	F	\N	https://images.ua.prom.st/1502472340_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 160х90	72.4100037	0	\N	F	46693029
+839280517	\N	EUR	F	\N	https://images.ua.prom.st/1502472083_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 110х90	32.7999992	0	\N	F	46693029
+839280516	\N	EUR	F	\N	https://images.ua.prom.st/1502471916_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 110х63	30.5400009	0	\N	F	46693029
+839280515	\N	EUR	F	\N	https://images.ua.prom.st/1502471652_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 90х75	28.8600006	0	\N	F	46693029
+839280514	\N	EUR	F	\N	https://images.ua.prom.st/1502471481_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом 90х63	26.5900002	0	\N	F	46693029
+839280513	\N	EUR	F	\N	https://images.ua.prom.st/1502471070_w200_h200_reduktsiya-pvh-pimtas.jpg	Редукция ПВХ Pimtas с раструбом	26.5900002	0	\N	F	46693029
+839275179	\N	USD	F	\N	https://images.ua.prom.st/1488209427_w200_h200_ochistitel-pimtas-tangit.jpg	Очиститель Pimtas Tangit PVC-U/ABS (1кг)	17.8899994	0	\N	F	45987122
+1001671985	\N	USD	F	\N	https://images.ua.prom.st/1873752229_w200_h200_dlitelnyj-hlor-v.jpg	Длительный хлор в таблетках Froggy LongChlor Tabs 20 (0,9 кг) Для дезинфекции воды в бассейнах 	7.82000017	0	\N	F	33249837
+718246540	\N	USD	F	\N	https://images.ua.prom.st/1193910941_w200_h200_ochistitel-dlya-trub.jpg	Очиститель для труб ERA 1000 гр	16.5	0	\N	F	45987122
+1029667476	\N	UAH	F	\N	https://images.ua.prom.st/1946598960_w200_h200_truba-pvh-era.jpg	Труба ПВХ Era PN16 (от 20 до 110 мм) с раструбом	16	0	\N	F	45984609
+957169211	\N	EUR	F	\N	https://images.ua.prom.st/1751583901_w200_h200_homut-vreznoj-na.jpg	Хомут врезной на трубу 50мм внутреняя резьба 0,5" Gemas	1.51999998	0	\N	F	45984609
+957169210	\N	EUR	F	\N	https://images.ua.prom.st/1751583900_w200_h200_homut-na-trubu.jpg	Хомут на трубу 110 мм c зажимом Gemas	0.360000014	0	\N	F	45984609
+957169209	\N	EUR	F	\N	https://images.ua.prom.st/1751583899_w200_h200_homut-na-trubu.jpg	Хомут на трубу 90 мм c зажимом Gemas	1.19000006	0	\N	F	45984609
+957169208	\N	EUR	F	\N	https://images.ua.prom.st/1751583898_w200_h200_homut-na-trubu.jpg	Хомут на трубу 75 мм c зажимом Gemas	0.970000029	0	\N	F	45984609
+957169207	\N	EUR	F	\N	https://images.ua.prom.st/1751583897_w200_h200_homut-na-trubu.jpg	Хомут на трубу 63 мм c зажимом Gemas	0.769999981	0	\N	F	45984609
+957169206	\N	EUR	F	\N	https://images.ua.prom.st/1751583896_w200_h200_homut-na-trubu.jpg	Хомут на трубу 50 мм c зажимом Gemas	0.360000014	0	\N	F	45984609
+957169205	\N	EUR	F	\N	https://images.ua.prom.st/1751583894_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D250мм Gemas	53.8199997	0	\N	F	45984609
+957169204	\N	EUR	F	\N	https://images.ua.prom.st/1751583892_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D200мм Gemas	34.6899986	0	\N	F	45984609
+957169203	\N	EUR	F	\N	https://images.ua.prom.st/1751583890_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D160мм Gemas	19.0100002	0	\N	F	45984609
+957169202	\N	EUR	F	\N	https://images.ua.prom.st/1751583888_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D140мм Gemas	14.6000004	0	\N	F	45984609
+957169201	\N	EUR	F	\N	https://images.ua.prom.st/1751583852_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D125мм Gemas	11.54	0	\N	F	45984609
+957169200	\N	EUR	F	\N	https://images.ua.prom.st/1751583850_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D110мм Gemas	8.89000034	0	\N	F	45984609
+957169199	\N	EUR	F	\N	https://images.ua.prom.st/1751583848_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D90мм Gemas	7.36999989	0	\N	F	45984609
+957169198	\N	EUR	F	\N	https://images.ua.prom.st/1751583846_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D75мм Gemas	5.03999996	0	\N	F	45984609
+957169197	\N	EUR	F	\N	https://images.ua.prom.st/1751583844_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D63мм Gemas	342	0	\N	F	45984609
+957169196	\N	EUR	F	\N	https://images.ua.prom.st/1751583842_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D50мм Gemas	2.30999994	0	\N	F	45984609
+957169195	\N	EUR	F	\N	https://images.ua.prom.st/1751583840_w200_h200_truba-pvh-zhestkaya.jpg	Труба ПВХ жесткая, серая, PN10, D32мм Gemas	1.14999998	0	\N	F	45984609
+839279168	\N	EUR	F	\N	https://images.ua.prom.st/1501072053_w200_h200_zazhim-dlya-trub.jpg	Зажим для труб (кронштейн) Pimtas 200	4.34000015	0	\N	F	45984609
+839279167	\N	EUR	F	\N	https://images.ua.prom.st/1501071840_w200_h200_zazhim-dlya-trub.jpg	Зажим для труб (кронштейн) Pimtas 160	3.18000007	0	\N	F	45984609
+957169121	\N	EUR	F	\N	https://images.ua.prom.st/1751583410_w200_h200_trojnik-90-200mm.jpg	Тройник 90° 200мм Gemas	39.8699989	0	\N	F	45983679
+957169120	\N	EUR	F	\N	https://images.ua.prom.st/1751583408_w200_h200_trojnik-90-160mm.jpg	Тройник 90° 160мм Gemas	22.6200008	0	\N	F	45983679
+957169119	\N	EUR	F	\N	https://images.ua.prom.st/1751583406_w200_h200_trojnik-90-140mm.jpg	Тройник 90° 140мм Gemas	16.4400005	0	\N	F	45983679
+957169118	\N	EUR	F	\N	https://images.ua.prom.st/1751583404_w200_h200_trojnik-90-125mm.jpg	Тройник 90° 125мм Gemas	10.1700001	0	\N	F	45983679
+957169117	\N	EUR	F	\N	https://images.ua.prom.st/1751583402_w200_h200_trojnik-90-110mm.jpg	Тройник 90° 110мм Gemas	6.69999981	0	\N	F	45983679
+957169116	\N	EUR	F	\N	https://images.ua.prom.st/1751583400_w200_h200_trojnik-90-90mm.jpg	Тройник 90° 90мм Gemas	4.28999996	0	\N	F	45983679
+957169115	\N	EUR	F	\N	https://images.ua.prom.st/1751583398_w200_h200_trojnik-90-75mm.jpg	Тройник 90° 75мм Gemas	2.76999998	0	\N	F	45983679
+957169114	\N	EUR	F	\N	https://images.ua.prom.st/1751583396_w200_h200_trojnik-90-63mm.jpg	Тройник 90° 63мм Gemas	1.58000004	0	\N	F	45983679
+957169113	\N	EUR	F	\N	https://images.ua.prom.st/1751583394_w200_h200_trojnik-90-50mm.jpg	Тройник 90° 50мм Gemas	1.13	0	\N	F	45983679
+957169112	\N	EUR	F	\N	https://images.ua.prom.st/1751583392_w200_h200_trojnik-90-32mm.jpg	Тройник 90° 32мм Gemas	0.810000002	0	\N	F	45983679
+839280594	\N	EUR	F	\N	https://images.ua.prom.st/1502912399_w200_h200_trojnik-reduktsionnyj-pimtas.jpg	Тройник редукционный Pimtas 90° с раструбным уплотнителем с трех сторон	20.3600006	0	\N	F	45983679
+839280593	\N	EUR	F	\N	https://images.ua.prom.st/1502902759_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 315х200, Раструбное	681.179993	0	\N	F	45983679
+839280592	\N	EUR	F	\N	https://images.ua.prom.st/1502902378_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 315х160, Раструбное	675.440002	0	\N	F	45983679
+839280591	\N	EUR	F	\N	https://images.ua.prom.st/1502901380_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 315х110, Раструбное	669.090027	0	\N	F	45983679
+839280590	\N	EUR	F	\N	https://images.ua.prom.st/1502901855_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 250х200, Раструбное	361.049988	0	\N	F	45983679
+839280589	\N	EUR	F	\N	https://images.ua.prom.st/1502901052_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 250х160, Раструбное	317.410004	0	\N	F	45983679
+839280588	\N	EUR	F	\N	https://images.ua.prom.st/1502900435_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 250х110, Раструбное	283.329987	0	\N	F	45983679
+839280587	\N	EUR	F	\N	https://images.ua.prom.st/1502899852_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 225х160, Раструбное	269.320007	0	\N	F	45983679
+839280586	\N	EUR	F	\N	https://images.ua.prom.st/1502899470_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 225х110, Раструбное	243.169998	0	\N	F	45983679
+839280585	\N	EUR	F	\N	https://images.ua.prom.st/1502899135_w200_h200_trojnik-reduktsionnyj-90.jpg	Тройник редукционный 90° Pimtas с раструбным уплотнителем под фланец 200х110, Раструбное	209.240005	0	\N	F	45983679
+718247008	#product-price-2796 > span	UAH	T	2019-09-03 08:30:47.81	https://images.ua.prom.st/1193944728_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 200х110 мм	927	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+1001668964	\N	USD	F	\N	https://images.ua.prom.st/1873749298_w200_h200_dlitelnyj-hlor-v.jpg	Длительный хлор в таблетках Froggy LongChlor Tabs 200 (50 кг)	319.279999	0	\N	F	33249837
+1001658983	\N	USD	F	\N	https://images.ua.prom.st/1873733069_w200_h200_hlornye-tabletki-froggy.jpg	Хлорные таблетки Froggy Desiclean Complex 20 (0,9 кг)	7.96999979	0	\N	F	33249837
+970575433	\N	UAH	F	\N	https://images.ua.prom.st/1788559877_w200_h200_zhidkij-hlor-25l.jpg	Жидкий хлор 25л для автоматических станций дозирования. Для бассейнов и очистительных сооружений.	1199	0	\N	F	33249837
+957168682	\N	UAH	F	\N	https://images.ua.prom.st/1751582787_w200_h200_stop-hlor-dlya.jpg	Стоп Хлор для бассейна BENAMIN BWT 25кг	3026	3	\N	F	33249837
+957168681	\N	UAH	F	\N	https://images.ua.prom.st/1751582786_w200_h200_stop-hlor-dlya.jpg	Стоп Хлор для бассейна BENAMIN BWT 6кг	1378	3	\N	F	33249837
+957168668	\N	UAH	F	\N	https://images.ua.prom.st/1751582770_w200_h200_hlor-dlya-bassejna.jpg	Хлор для бассейна жидкий BENAMIN BWT 20 кг	954	3	\N	F	33249837
+957168666	\N	UAH	F	\N	https://images.ua.prom.st/1751582768_w200_h200_zhidkoe-dezinfitsiruyuschee-sredstvo.jpg	Жидкое дезинфицирующее средство для бассейна на основе хлора 33кг	1272	0	\N	F	33249837
+957168664	\N	UAH	F	\N	https://images.ua.prom.st/1751582759_w200_h200_hlor-dlya-bassejna.jpg	Хлор для бассейна жидкий BENAMIN SPOREX BWT 20кг	1160	3	\N	F	33249837
+957168648	\N	USD	F	\N	https://images.ua.prom.st/1751582705_w200_h200_natriya-gipohlorit-hlor.jpg	Натрия Гипохлорит (Хлор жидкий для бассейна) 30л стабил. WaterWorld	56	0	\N	F	33249837
+839285427	\N	EUR	F	\N	https://images.ua.prom.st/1504825984_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 315, Фланцевое	669.059998	0	\N	F	45982992
+839285426	\N	EUR	F	\N	https://images.ua.prom.st/1504825725_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 280, Фланцевое	476.279999	0	\N	F	45982992
+839285425	\N	EUR	F	\N	https://images.ua.prom.st/1504825490_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 250, Фланцевое	383.040009	0	\N	F	45982992
+839285424	\N	EUR	F	\N	https://images.ua.prom.st/1504825275_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 225, Фланцевое	181.440002	0	\N	F	45982992
+839285423	\N	EUR	F	\N	https://images.ua.prom.st/1504825119_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 200, Фланцевое	156.240005	0	\N	F	45982992
+839285422	\N	EUR	F	\N	https://images.ua.prom.st/1504824924_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 160, Фланцевое	104.580002	0	\N	F	45982992
+839285421	\N	EUR	F	\N	https://images.ua.prom.st/1504824750_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 140, Фланцевое	91.9800034	0	\N	F	45982992
+839285420	\N	EUR	F	\N	https://images.ua.prom.st/1504824397_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 125, Фланцевое	79.3799973	0	\N	F	45982992
+839285419	\N	EUR	F	\N	https://images.ua.prom.st/1504824149_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 110, Фланцевое	73.0800018	0	\N	F	45982992
+839285418	\N	EUR	F	\N	https://images.ua.prom.st/1504823904_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 90, Фланцевое	60.4799995	0	\N	F	45982992
+839285417	\N	EUR	F	\N	https://images.ua.prom.st/1504823774_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 75, Фланцевое	52.9199982	0	\N	F	45982992
+839285416	\N	EUR	F	\N	https://images.ua.prom.st/1504823555_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе 63, Фланцевое	47.8800011	0	\N	F	45982992
+839285415	\N	EUR	F	\N	https://images.ua.prom.st/1504823320_w200_h200_klapan-obratnyj-pvh.jpg	Клапан обратный ПВХ Pimtas с фланцевым соединением в сборе	62.2400017	0	\N	F	45982992
+839285413	\N	EUR	F	\N	https://images.ua.prom.st/1504888532_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 400	756	0	\N	F	45982992
+839285411	\N	EUR	F	\N	https://images.ua.prom.st/1504888317_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 315	346.5	0	\N	F	45982992
+839285409	\N	EUR	F	\N	https://images.ua.prom.st/1504888057_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 250	170.100006	0	\N	F	45982992
+839285407	\N	EUR	F	\N	https://images.ua.prom.st/1504887807_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 225	89.4599991	0	\N	F	45982992
+839285405	\N	EUR	F	\N	https://images.ua.prom.st/1504887624_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 200	78.1200027	0	\N	F	45982992
+839285403	\N	EUR	F	\N	https://images.ua.prom.st/1504887383_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 160	63	0	\N	F	45982992
+839285401	\N	EUR	F	\N	https://images.ua.prom.st/1504887170_w200_h200_mezhflantsevyj-obratnyj-klapan.jpg	Межфланцевый обратный клапан ПВХ Pimtas 140	55.9399986	0	\N	F	45982992
+957169161	\N	EUR	F	\N	https://images.ua.prom.st/1751583616_w200_h200_mufta-160mm-gemas.jpg	Муфта 160мм Gemas	7.32999992	0	\N	F	45979475
+957169160	\N	EUR	F	\N	https://images.ua.prom.st/1751583614_w200_h200_mufta-110mm-gemas.jpg	Муфта 110мм Gemas	3.31999993	0	\N	F	45979475
+957169159	\N	EUR	F	\N	https://images.ua.prom.st/1751583612_w200_h200_mufta-90mm-gemas.jpg	Муфта 90мм Gemas	1.96000004	0	\N	F	45979475
+957169158	\N	EUR	F	\N	https://images.ua.prom.st/1751583610_w200_h200_mufta-75mm-gemas.jpg	Муфта 75мм Gemas	1.58000004	0	\N	F	45979475
+957169157	\N	EUR	F	\N	https://images.ua.prom.st/1751583608_w200_h200_mufta-63mm-gemas.jpg	Муфта 63мм Gemas	0.769999981	0	\N	F	45979475
+957169156	\N	EUR	F	\N	https://images.ua.prom.st/1751583606_w200_h200_mufta-50mm-gemas.jpg	Муфта 50мм Gemas	0.49000001	0	\N	F	45979475
+957169155	\N	EUR	F	\N	https://images.ua.prom.st/1751583604_w200_h200_mufta-32mm-gemas.jpg	Муфта 32мм Gemas	0.300000012	0	\N	F	45979475
+957169154	\N	EUR	F	\N	https://images.ua.prom.st/1751583602_w200_h200_mufta-razbornaya-63mm.jpg	Муфта разборная 63мм наружная резьба 2" Gemas	7.17000008	0	\N	F	45979475
+957169153	\N	EUR	F	\N	https://images.ua.prom.st/1751583600_w200_h200_mufta-razbornaya-63mm.jpg	Муфта разборная 63мм наружная резьба 1,5" Gemas	5.90999985	0	\N	F	45979475
+957169152	\N	EUR	F	\N	https://images.ua.prom.st/1751583598_w200_h200_mufta-razbornaya-63mm.jpg	Муфта разборная 63мм внутреняя внутреняя резьба 2" Gemas	5.80999994	0	\N	F	45979475
+957169151	\N	EUR	F	\N	https://images.ua.prom.st/1751583557_w200_h200_mufta-razbornaya-50mm.jpg	Муфта разборная 50мм внутреняя внутреняя резьба 1,5" Gemas	4.9000001	0	\N	F	45979475
+957169150	\N	EUR	F	\N	https://images.ua.prom.st/1751583555_w200_h200_mufta-razbornaya-32mm.jpg	Муфта разборная 32мм внутреняя резьба 1" Gemas	3.29999995	0	\N	F	45979475
+957169149	\N	EUR	F	\N	https://images.ua.prom.st/1751583553_w200_h200_mufta-razbornaya-63mm.jpg	Муфта разборная 63мм Gemas	5.80999994	0	\N	F	45979475
+957169148	\N	EUR	F	\N	https://images.ua.prom.st/1751583551_w200_h200_mufta-razbornaya-50mm.jpg	Муфта разборная 50мм Gemas	4.9000001	0	\N	F	45979475
+957169147	\N	EUR	F	\N	https://images.ua.prom.st/1751583549_w200_h200_mufta-razbornaya-32mm.jpg	Муфта разборная 32мм Gemas	3.29999995	0	\N	F	45979475
+957169146	\N	EUR	F	\N	https://images.ua.prom.st/1751583548_w200_h200_mufta-perehodnik-reduktsionnaya-63-75mm.jpg	Муфта-переходник редукционная 63-75мм, внутреняя резьба 2" Gemas	2	0	\N	F	45979475
+957169145	\N	EUR	F	\N	https://images.ua.prom.st/1751583547_w200_h200_mufta-perehodnik-reduktsionnaya-50-63mm.jpg	Муфта-переходник редукционная 50-63мм, внутренняя резьба 1,5" Gemas	1.44000006	0	\N	F	45979475
+957169144	\N	EUR	F	\N	https://images.ua.prom.st/1751583545_w200_h200_mufta-perehodnik-reduktsionnaya-75-90mm.jpg	Муфта-переходник редукционная 75-90мм, наружная резьба 2,5" Gemas	3.1400001	0	\N	F	45979475
+957169143	\N	EUR	F	\N	https://images.ua.prom.st/1751583543_w200_h200_mufta-perehodnik-reduktsionnaya-63-75mm.jpg	Муфта-переходник редукционная 63-75мм, наружная резьба 2" Gemas	2.25	0	\N	F	45979475
+957169142	\N	EUR	F	\N	https://images.ua.prom.st/1751583541_w200_h200_mufta-perehodnik-reduktsionnaya-50-63mm.jpg	Муфта-переходник редукционная 50-63мм, наружная резьба 1,5" Gemas	7.01000023	0	\N	F	45979475
+957169191	\N	EUR	F	\N	https://images.ua.prom.st/1751583819_w200_h200_kran-babochka-dvuhpozitsionnyj.jpg	Кран бабочка двухпозиционный 125мм Gemas	119.620003	0	\N	F	45979179
+957169190	\N	EUR	F	\N	https://images.ua.prom.st/1751583817_w200_h200_kran-sharovyj-dvuhpozitsionnyj.jpg	Кран шаровый двухпозиционный 110мм Gemas	69.3799973	0	\N	F	45979179
+957169189	\N	EUR	F	\N	https://images.ua.prom.st/1751583815_w200_h200_kran-sharovyj-dvuhpozitsionnyj.jpg	Кран шаровый двухпозиционный 90мм Gemas	46.9599991	0	\N	F	45979179
+957169188	\N	EUR	F	\N	https://images.ua.prom.st/1751583813_w200_h200_kran-sharovyj-dvuhpozitsionnyj.jpg	Кран шаровый двухпозиционный 75мм Gemas	35.7999992	0	\N	F	45979179
+957169187	\N	EUR	F	\N	https://images.ua.prom.st/1751583811_w200_h200_kran-sharovyj-dvuhpozitsionnyj.jpg	Кран шаровый двухпозиционный 63мм Gemas	13.6499996	0	\N	F	45979179
+957169186	\N	EUR	F	\N	https://images.ua.prom.st/1751583809_w200_h200_kran-sharovyj-dvuhpozitsionnyj.jpg	Кран шаровый двухпозиционный 50мм Gemas	10.3500004	0	\N	F	45979179
+839285388	\N	EUR	F	\N	https://images.ua.prom.st/1663916244_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 110	58.9099998	0	\N	F	45979179
+839285386	\N	EUR	F	\N	https://images.ua.prom.st/1663916070_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 90	39.6199989	0	\N	F	45979179
+839285384	\N	EUR	F	\N	https://images.ua.prom.st/1663915892_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 75	29.9899998	0	\N	F	45979179
+839285382	\N	EUR	F	\N	https://images.ua.prom.st/1663915503_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 63	11.5600004	0	\N	F	45979179
+839285380	\N	EUR	F	\N	https://images.ua.prom.st/1663915337_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 50	8.78999996	0	\N	F	45979179
+839285378	\N	EUR	F	\N	https://images.ua.prom.st/1663915061_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 40	7.5	0	\N	F	45979179
+839285376	\N	EUR	F	\N	https://images.ua.prom.st/1663914756_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 32	6.96999979	0	\N	F	45979179
+839285374	\N	EUR	F	\N	https://images.ua.prom.st/1663914542_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 25	5.90999985	0	\N	F	45979179
+839285372	\N	EUR	F	\N	https://images.ua.prom.st/1663914407_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны 20	5.57000017	0	\N	F	45979179
+839285370	\N	EUR	F	\N	https://images.ua.prom.st/1663827417_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с клеевой муфтой с одной стороны	5.57000017	0	\N	F	45979179
+839285368	\N	EUR	F	\N	https://images.ua.prom.st/1504800419_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с фланцевым соединением 110, Ручной, Фланцевое	131.940002	0	\N	F	45979179
+839285366	\N	EUR	F	\N	https://images.ua.prom.st/1504799930_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с фланцевым соединением 90, Ручной, Фланцевое	78.7600021	0	\N	F	45979179
+839285364	\N	EUR	F	\N	https://images.ua.prom.st/1504800233_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с фланцевым соединением 75, Ручной, Фланцевое	65.5199966	0	\N	F	45979179
+839285362	\N	EUR	F	\N	https://images.ua.prom.st/1504799666_w200_h200_kran-sharovoj-pvh.jpg	Кран шаровой ПВХ Pimtas с фланцевым соединением 63, Ручной, Фланцевое	33.4000015	0	\N	F	45979179
+957168843	\N	EUR	F	\N	https://images.ua.prom.st/1751583369_w200_h200_koleno-90-200mm.jpg	Колено 90° 200мм Gemas	38.5	0	\N	F	45978384
+957168842	\N	EUR	F	\N	https://images.ua.prom.st/1751583367_w200_h200_koleno-90-160mm.jpg	Колено 90° 160мм Gemas	19.8999996	0	\N	F	45978384
+957168841	\N	EUR	F	\N	https://images.ua.prom.st/1751583365_w200_h200_koleno-90-140mm.jpg	Колено 90° 140мм Gemas	12.1700001	0	\N	F	45978384
+957168840	\N	EUR	F	\N	https://images.ua.prom.st/1751583362_w200_h200_koleno-90-125mm.jpg	Колено 90° 125мм Gemas	8.22000027	0	\N	F	45978384
+957168839	\N	EUR	F	\N	https://images.ua.prom.st/1751583360_w200_h200_koleno-90-110mm.jpg	Колено 90° 110мм Gemas	5.53000021	0	\N	F	45978384
+957168838	\N	EUR	F	\N	https://images.ua.prom.st/1751583359_w200_h200_koleno-90-90mm.jpg	Колено 90° 90мм Gemas	3.27999997	0	\N	F	45978384
+957168837	\N	EUR	F	\N	https://images.ua.prom.st/1751583358_w200_h200_koleno-90-75mm.jpg	Колено 90° 75мм Gemas	2.36999989	0	\N	F	45978384
+957168836	\N	EUR	F	\N	https://images.ua.prom.st/1751583357_w200_h200_koleno-90-63mm.jpg	Колено 90° 63мм Gemas	1.24000001	0	\N	F	45978384
+957168835	\N	EUR	F	\N	https://images.ua.prom.st/1751583356_w200_h200_koleno-90-50mm.jpg	Колено 90° 50мм Gemas	0.99000001	0	\N	F	45978384
+957168834	\N	EUR	F	\N	https://images.ua.prom.st/1751583354_w200_h200_koleno-90-32mm.jpg	Колено 90° 32мм Gemas	0.529999971	0	\N	F	45978384
+957168833	\N	EUR	F	\N	https://images.ua.prom.st/1751583317_w200_h200_koleno-45s-160mm.jpg	Колено 45°С 160мм Gemas	19.1900005	0	\N	F	45978384
+957168832	\N	EUR	F	\N	https://images.ua.prom.st/1751583315_w200_h200_koleno-45s-140mm.jpg	Колено 45°С 140мм Gemas	16.4400005	0	\N	F	45978384
+957168831	\N	EUR	F	\N	https://images.ua.prom.st/1751583313_w200_h200_koleno-45s-125mm.jpg	Колено 45°С 125мм Gemas	10.0200005	0	\N	F	45978384
+957168829	\N	EUR	F	\N	https://images.ua.prom.st/1751583311_w200_h200_koleno-45s-110mm.jpg	Колено 45°С 110мм Gemas	6.57999992	0	\N	F	45978384
+957168828	\N	EUR	F	\N	https://images.ua.prom.st/1751583309_w200_h200_koleno-45s-90mm.jpg	Колено 45°С 90мм Gemas	4.28999996	0	\N	F	45978384
+957168826	\N	EUR	F	\N	https://images.ua.prom.st/1751583307_w200_h200_koleno-45s-75mm.jpg	Колено 45°С 75мм Gemas	2.78999996	0	\N	F	45978384
+957168824	\N	EUR	F	\N	https://images.ua.prom.st/1751583305_w200_h200_koleno-45s-63mm.jpg	Колено 45°С 63мм Gemas	1.58000004	0	\N	F	45978384
+957168823	\N	EUR	F	\N	https://images.ua.prom.st/1751583303_w200_h200_koleno-45s-50mm.jpg	Колено 45°С 50мм Gemas	1.13	0	\N	F	45978384
+957168821	\N	EUR	F	\N	https://images.ua.prom.st/1751583301_w200_h200_koleno-45s-32mm.jpg	Колено 45°С 32мм Gemas	0.810000002	0	\N	F	45978384
+839282731	\N	EUR	F	\N	https://images.ua.prom.st/1503119168_w200_h200_koleno-pvh-pimtas.jpg	Колено ПВХ Pimtas длинное с раструбом 315, 90	525.830017	0	\N	F	45978384
+970889386	\N	UAH	F	\N	https://images.ua.prom.st/1789023544_w200_h200_klej-griffon-1000.jpg	Клей Griffon (1000 мл) + щеточка	839	0	\N	F	45978223
+970879009	\N	UAH	F	\N	https://images.ua.prom.st/1789018384_w200_h200_klej-griffon-500.jpg	Клей Griffon (500 мл) + щеточка	501	0	\N	F	45978223
+970875150	\N	UAH	F	\N	https://images.ua.prom.st/1789015206_w200_h200_klej-griffon-250.jpg	Клей Griffon (250 мл)	255	0	\N	F	45978223
+970866559	\N	UAH	F	\N	https://images.ua.prom.st/1789004568_w200_h200_klej-griffon-125.jpg	Клей Griffon (125 мл)	162	0	\N	F	45978223
+839275178	\N	EUR	F	\N	https://images.ua.prom.st/1488153829_w200_h200_klej-pimtas-dlya.jpg	Клей Pimtas для ПВХ Tangit 1кг	18.2000008	0	\N	F	45978223
+839275176	\N	EUR	F	\N	https://images.ua.prom.st/1488153527_w200_h200_klej-pimtas-dlya.jpg	Клей Pimtas для ПВХ Tangit 0.5кг	12.8800001	0	\N	F	45978223
+839275175	\N	EUR	F	\N	https://images.ua.prom.st/1488152932_w200_h200_klej-pimtas-dlya.jpg	Клей Pimtas для ПВХ Tangit	12.8800001	0	\N	F	45978223
+839275147	\N	EUR	F	\N	https://images.ua.prom.st/1488104978_w200_h200_klej-dlya-pvh.jpg	Клей для ПВХ Pimtas 1кг	18.2000008	0	\N	F	45978223
+839275146	\N	EUR	F	\N	https://images.ua.prom.st/1488104185_w200_h200_klej-dlya-pvh.jpg	Клей для ПВХ Pimtas 0.5кг	12.8800001	0	\N	F	45978223
+839275145	\N	EUR	F	\N	https://images.ua.prom.st/1488103921_w200_h200_klej-dlya-pvh.jpg	Клей для ПВХ Pimtas 0.25кг	8.36999989	0	\N	F	45978223
+839275144	\N	EUR	F	\N	https://images.ua.prom.st/1488103627_w200_h200_klej-dlya-pvh.jpg	Клей для ПВХ Pimtas 0.125кг	4.15999985	0	\N	F	45978223
+839275142	\N	EUR	F	\N	https://images.ua.prom.st/1488102961_w200_h200_klej-dlya-pvh.jpg	Клей для ПВХ Pimtas	4.15999985	0	\N	F	45978223
+827885708	\N	UAH	F	\N	https://images.ua.prom.st/1441592913_w200_h200_adhesivo-adhesive-kleber.jpg	Adhesivo adhesive kleber CH Клей для труб ПВХ 1л	478	0	\N	F	45978223
+964657601	#product-price-4893	UAH	T	2019-09-03 08:30:48.39	https://images.ua.prom.st/1772588273_w200_h200_filtr-nasos-bestway-58462.jpg	Фильтр-насос Bestway 58462 со скиммером (2574 л/час)	1898	0	https://aquapolis.ua/filtracionnaja-ustanovka-bestway-58462-skimatic-2-57m-ch-podvesnaja-s-musoroulovitelem.html	T	65491143
+964649503	#product-price-4890 > span	UAH	T	2019-09-03 08:30:49.695	https://images.ua.prom.st/1772548067_w200_h200_kartridzh-bakteritsidnyj-bestway.jpg	Картридж бактерицидный Bestway 58503 (II) (2 шт)	325	0	https://aquapolis.ua/kartridzh-baktericidnyj-bestway-58503-ii-2-sht.html	T	65491143
+957169175	\N	EUR	F	\N	https://images.ua.prom.st/1751583749_w200_h200_flantsevyj-adapter-200mm.jpg	Фланцевый адаптер 200мм Gemas	9.34000015	0	\N	F	45978149
+957169174	\N	EUR	F	\N	https://images.ua.prom.st/1751583747_w200_h200_flantsevyj-adapter-160mm.jpg	Фланцевый адаптер 160мм Gemas	6.63999987	0	\N	F	45978149
+957169173	\N	EUR	F	\N	https://images.ua.prom.st/1751583745_w200_h200_flantsevyj-adapter-140mm.jpg	Фланцевый адаптер 140мм Gemas	4.5999999	0	\N	F	45978149
+957169172	\N	EUR	F	\N	https://images.ua.prom.st/1751583743_w200_h200_flantsevyj-adapter-125mm.jpg	Фланцевый адаптер 125мм Gemas	3.44000006	0	\N	F	45978149
+957169171	\N	EUR	F	\N	https://images.ua.prom.st/1751583687_w200_h200_flantsevyj-adapter-110mm.jpg	Фланцевый адаптер 110мм Gemas	2.6099999	0	\N	F	45978149
+957169170	\N	EUR	F	\N	https://images.ua.prom.st/1751583685_w200_h200_flantsevyj-adapter-90mm.jpg	Фланцевый адаптер 90мм Gemas	1.63999999	0	\N	F	45978149
+957169169	\N	EUR	F	\N	https://images.ua.prom.st/1751583683_w200_h200_flantsevyj-adapter-75mm.jpg	Фланцевый адаптер 75мм Gemas	1.39999998	0	\N	F	45978149
+957169168	\N	EUR	F	\N	https://images.ua.prom.st/1751583681_w200_h200_flanets-200-mm.jpg	Фланец 200 мм Gemas	10.96	0	\N	F	45978149
+957169167	\N	EUR	F	\N	https://images.ua.prom.st/1751583679_w200_h200_flanets-160mm-gemas.jpg	Фланец 160мм Gemas	5.71999979	0	\N	F	45978149
+957169166	\N	EUR	F	\N	https://images.ua.prom.st/1751583677_w200_h200_flanets-140mm-gemas.jpg	Фланец 140мм Gemas	4.19000006	0	\N	F	45978149
+957169165	\N	EUR	F	\N	https://images.ua.prom.st/1751583675_w200_h200_flanets-125mm-gemas.jpg	Фланец 125мм Gemas	4.19000006	0	\N	F	45978149
+957169164	\N	EUR	F	\N	https://images.ua.prom.st/1751583673_w200_h200_flanets-110mm-gemas.jpg	Фланец 110мм Gemas	3.24000001	0	\N	F	45978149
+957169163	\N	EUR	F	\N	https://images.ua.prom.st/1751583671_w200_h200_flanets-90mm-gemas.jpg	Фланец 90мм Gemas	3	0	\N	F	45978149
+957169162	\N	EUR	F	\N	https://images.ua.prom.st/1751583665_w200_h200_flanets-75mm-gemas.jpg	Фланец 75мм Gemas	0.829999983	0	\N	F	45978149
+839280629	\N	EUR	F	\N	https://images.ua.prom.st/1502940778_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 400	433.350006	0	\N	F	45978149
+839280627	\N	EUR	F	\N	https://images.ua.prom.st/1502940566_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 375	279.589996	0	\N	F	45978149
+839280625	\N	EUR	F	\N	https://images.ua.prom.st/1502940264_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 250	184.669998	0	\N	F	45978149
+839280623	\N	EUR	F	\N	https://images.ua.prom.st/1502939940_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 225	174.610001	0	\N	F	45978149
+839280621	\N	EUR	F	\N	https://images.ua.prom.st/1502939280_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 200	118.379997	0	\N	F	45978149
+839280619	\N	EUR	F	\N	https://images.ua.prom.st/1502938831_w200_h200_flantsevaya-vtulka-pvh.jpg	Фланцевая втулка ПВХ Pimtas 160	64.5800018	0	\N	F	45978149
+839280465	\N	USD	F	\N	https://images.ua.prom.st/1501474181_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 500, Фланцевое	1194.65161	0	\N	F	45977214
+839280464	\N	USD	F	\N	https://images.ua.prom.st/1501473910_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 450	991.116028	0	\N	F	45977214
+839280463	\N	USD	F	\N	https://images.ua.prom.st/1501473611_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 400	513.262207	0	\N	F	45977214
+839280462	\N	USD	F	\N	https://images.ua.prom.st/1501465215_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 355	481.079987	0	\N	F	45977214
+839280461	\N	USD	F	\N	https://images.ua.prom.st/1501464849_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 315	269.017212	0	\N	F	45977214
+839280460	\N	USD	F	\N	https://images.ua.prom.st/1501464500_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 280	207.069595	0	\N	F	45977214
+839280459	\N	USD	F	\N	https://images.ua.prom.st/1501463689_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 250	207.069595	0	\N	F	45977214
+839280458	\N	USD	F	\N	https://images.ua.prom.st/1501463287_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 225	63.7145996	0	\N	F	45977214
+839280457	\N	USD	F	\N	https://images.ua.prom.st/1501462098_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 200	63.7145996	0	\N	F	45977214
+839280456	\N	USD	F	\N	https://images.ua.prom.st/1501462744_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 160	23.8943996	0	\N	F	45977214
+839280455	\N	USD	F	\N	https://images.ua.prom.st/1501462332_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 140	17.0771999	0	\N	F	45977214
+839280454	\N	USD	F	\N	https://images.ua.prom.st/1501461702_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 125	17.0771999	0	\N	F	45977214
+839280453	\N	USD	F	\N	https://images.ua.prom.st/1501461410_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 110	13.2695999	0	\N	F	45977214
+839280452	\N	USD	F	\N	https://images.ua.prom.st/1467503653_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 90	13.7826004	0	\N	F	45977214
+839280451	\N	USD	F	\N	https://images.ua.prom.st/1501461058_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 75	12.7223997	0	\N	F	45977214
+839280450	\N	USD	F	\N	https://images.ua.prom.st/1501460774_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 63	11.3087997	0	\N	F	45977214
+839280449	\N	USD	F	\N	https://images.ua.prom.st/1501460343_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 50	10.2486	0	\N	F	45977214
+839280448	\N	USD	F	\N	https://images.ua.prom.st/1501459896_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 40	8.48159981	0	\N	F	45977214
+839280447	\N	USD	F	\N	https://images.ua.prom.st/1501459642_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 32	7.40999985	0	\N	F	45977214
+839280446	\N	USD	F	\N	https://images.ua.prom.st/1501459414_w200_h200_flantsevaya-zaglushka-pvh.jpg	Фланцевая заглушка ПВХ Pimtas 25	6.34980011	0	\N	F	45977214
+773634571	\N	UAH	F	\N	https://images.ua.prom.st/1314110389_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame DESIGN 660FG (EF450S)	6020	0	\N	F	38376159
+773634570	\N	UAH	F	\N	https://images.ua.prom.st/1314110388_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame DESIGN 650CG (EF455S)	6020	0	\N	F	38376159
+773634569	\N	UAH	F	\N	https://images.ua.prom.st/1314110202_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame DESIGN 900FG (EF420S)	7140	0	\N	F	38376159
+773634568	\N	UAH	F	\N	https://images.ua.prom.st/1314110201_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame DESIGN 885CG (EF430S)	7140	0	\N	F	38376159
+773634567	\N	UAH	F	\N	https://images.ua.prom.st/1314110210_w200_h200_royal-flame-vision.jpg	Royal Flame Vision 60 LED	14000	0	\N	F	38376159
+773634566	\N	UAH	F	\N	https://images.ua.prom.st/1314110204_w200_h200_elektrokamin-royal-shine.jpg	Электрокамин Royal Shine EF 72	16100	0	\N	F	38376159
+773634565	\N	UAH	F	\N	https://images.ua.prom.st/1314110203_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Space 2 (AF 510-Y23J-SZ)	7560	0	\N	F	38376159
+773634564	\N	UAH	F	\N	https://images.ua.prom.st/1314109980_w200_h200_kaminokomplekt-elaine-gold.jpg	Каминокомплект Elaine Gold	13580	0	\N	F	38376159
+773634563	\N	UAH	F	\N	https://images.ua.prom.st/1314109974_w200_h200_elektrokamin-royal-shine.jpg	Электрокамин Royal Shine EF 50	13300	0	\N	F	38376159
+773634562	\N	UAH	F	\N	https://images.ua.prom.st/1314109973_w200_h200_kaminokomplekt-elaine.jpg	Каминокомплект Elaine	13580	0	\N	F	38376159
+773634561	\N	UAH	F	\N	https://images.ua.prom.st/1314109972_w200_h200_kaminokomplekt-michelle-gold.jpg	Каминокомплект Michelle Gold	13160	0	\N	F	38376159
+773634560	\N	UAH	F	\N	https://images.ua.prom.st/1314109971_w200_h200_kaminokomplekt-michelle.jpg	Каминокомплект Michelle	13160	0	\N	F	38376159
+773634559	\N	UAH	F	\N	https://images.ua.prom.st/1314109754_w200_h200_kaminokomplekt-montreal-.jpg	Каминокомплект Montreal + Etna	29120	0	\N	F	38376159
+773634558	\N	UAH	F	\N	https://images.ua.prom.st/1314109752_w200_h200_kaminokomplekt-idamebel-barcelona.jpg	Каминокомплект IDaMebel Barcelona	19600	0	\N	F	38376159
+773634557	\N	UAH	F	\N	https://images.ua.prom.st/1314109750_w200_h200_kaminokomplekt-idamebel-denpasar.jpg	Каминокомплект IDaMebel Denpasar	22400	0	\N	F	38376159
+773634556	\N	UAH	F	\N	https://images.ua.prom.st/1314109749_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Majestic FX M Black	4760	0	\N	F	38376159
+773634555	\N	UAH	F	\N	https://images.ua.prom.st/1314109748_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Fobos FX Brass	5040	0	\N	F	38376159
+773634554	\N	UAH	F	\N	https://images.ua.prom.st/1314109548_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Majestic FX M Brass	4760	0	\N	F	38376159
+773634553	\N	UAH	F	\N	https://images.ua.prom.st/1314109547_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Fobos FX M Black	5040	0	\N	F	38376159
+773634552	\N	UAH	F	\N	https://images.ua.prom.st/1314109546_w200_h200_elektrokamin-royal-flame.jpg	Электрокамин Royal Flame Vision 26 LED FX	8960	0	\N	F	38376159
+718247002	#product-price-2739 > span	UAH	T	2019-09-03 08:31:04.927	https://images.ua.prom.st/1193944242_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 63х40 мм	27	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247001	#product-price-2141 > span	UAH	T	2019-09-03 08:31:09.029	https://images.ua.prom.st/1193943662_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 90х50 мм	69	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246998	#product-price-2144 > span	UAH	T	2019-09-03 08:31:12.973	https://images.ua.prom.st/1193943668_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 32х25 мм	4	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718041542	#product-price-1622 > span	UAH	T	2019-09-03 08:31:13.551	https://images.ua.prom.st/1193595085_w200_h200_kartridzh-bestway-58094.jpg	Картридж Bestway 58094 (II) (2шт)	185	0	https://aquapolis.ua/kartridzh-dlja-filtrov-bestway-58095-iv.html	T	65491143
+718041540	#product-price-1622 > span	UAH	T	2019-09-03 08:31:14.072	https://images.ua.prom.st/1193595083_w200_h200_kartridzh-bestway-58095.jpg	Картридж Bestway 58095 (IV)	185	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%9A%D0%B0%D1%80%D1%82%D1%80%D0%B8%D0%B4%D0%B6+Bestway+58095+	T	65491143
+718041539	#product-price-1620	UAH	T	2019-09-03 08:31:14.617	https://images.ua.prom.st/1193595082_w200_h200_kartridzh-bestway-58012.jpg	Картридж Bestway 58012 (III)	74	0	https://aquapolis.ua/kartridzh-dlja-filtrov-bestway-58012-iii.html	T	65491143
+766077380	#product-price-4585 > span	UAH	T	2019-09-03 08:30:52.807	https://images.ua.prom.st/1296872786_w200_h200_ochistitel-prajmer-bailey.jpg	Очиститель (Праймер) Bailey P-1050 946мл	430	0	https://aquapolis.ua/ochistitel-prajmer-bailey-p-1050.html	T	45987122
+718247006	#product-price-2735 > span	UAH	T	2019-09-03 08:30:56.692	https://images.ua.prom.st/1193944254_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 250х225 мм	927	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247003	#product-price-2734 > span	UAH	T	2019-09-03 08:31:00.748	https://images.ua.prom.st/1193944245_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 250х200 мм	1577	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246538	\N	USD	F	\N	https://images.ua.prom.st/1193910623_w200_h200_ochistitel-dlya-trub.jpg	Очиститель для труб ERA 500 гр	8.80000019	3	\N	F	45987122
+718247009	#product-price-2797 > span	UAH	T	2019-09-03 08:31:18.473	https://images.ua.prom.st/1193944731_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 225х110 мм	1298	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247004	#product-price-2798 > span	UAH	T	2019-09-03 08:31:22.373	https://images.ua.prom.st/1193944248_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 250х160 мм	1484	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+766077309	#product-price-4583 > span	UAH	T	2019-09-03 08:31:25.619	https://images.ua.prom.st/1296863353_w200_h200_klej-dlya-trub.jpg	Клей для труб ПВХ Bailey L-6023 118мл	80	0	https://aquapolis.ua/klej-dlja-trub-pvh-bailey-l-6023.html	T	45978223
+964673690	#product-price-4894	USD	T	2019-09-03 08:31:26.203	https://images.ua.prom.st/1772596868_w200_h200_filtr-nasos-bestway-58469.jpg	Фильтр-насос Bestway 58469 со скиммером (3974 л/час) фильтр для бассейна	2548	0	https://aquapolis.ua/filtracionnaja-ustanovka-bestway-58469-skimatic-3-97m-ch-podvesnaja-s-musoroulovitelem.html	T	65491143
+964651974	#product-price-4892	UAH	T	2019-09-03 08:31:26.803	https://images.ua.prom.st/1772565657_w200_h200_kartridzh-bakteritsidnyj-bestway.jpg	Картридж бактерицидный Bestway 58505 (IV)	356	0	https://aquapolis.ua/kartridzh-baktericidnyj-bestway-58505-iv.html	T	65491143
+766077311	#product-price-4586 > span	UAH	T	2019-09-03 08:31:29.956	https://images.ua.prom.st/1296863525_w200_h200_ochistitel-prajmer-bailey.jpg	Очиститель (Праймер) Bailey P-1050 473мл	231	0	https://aquapolis.ua/ochistitel-prajmer-bailey-p-1050.html	T	45987122
+718247010	#product-price-2140 > span	UAH	T	2019-09-03 08:31:33.969	https://images.ua.prom.st/1193944734_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ Aquaviva 63х50 мм	20	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246893	#product-price-2795 > span	UAH	T	2019-09-03 08:31:41.78	https://images.ua.prom.st/1193942901_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 50х25 мм	15	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246892	#product-price-2737 > span	UAH	T	2019-09-03 08:31:45.752	https://images.ua.prom.st/1193942897_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 50х32 мм	14	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+766077310	#product-price-4582 > span	UAH	T	2019-09-03 08:31:48.803	https://images.ua.prom.st/1296863354_w200_h200_klej-dlya-trub.jpg	Клей для труб ПВХ Bailey L-6023 237мл	129	0	https://aquapolis.ua/klej-dlja-trub-pvh-bailey-l-6023.html	T	45978223
+766077308	#product-price-4581 > span	UAH	T	2019-09-03 08:31:52.194	https://images.ua.prom.st/1296863352_w200_h200_klej-dlya-trub.jpg	Клей для труб ПВХ Bailey L-6023 473мл	228	0	https://aquapolis.ua/klej-dlja-trub-pvh-bailey-l-6023.html	T	45978223
+718247015	#product-price-2143 > span	UAH	T	2019-09-03 08:31:56.174	https://images.ua.prom.st/1193945073_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ Aquaviva 90х75 мм	48	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247012	#product-price-2599 > span	UAH	T	2019-09-03 08:32:00.219	https://images.ua.prom.st/1193945068_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ Aquaviva 75х63 мм	28	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247011	#product-price-2597 > span	UAH	T	2019-09-03 08:32:04.413	https://images.ua.prom.st/1193944736_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ Aquaviva 50х40 мм	11	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246894	#product-price-2145 > span	UAH	T	2019-09-03 08:31:37.864	https://images.ua.prom.st/1193942906_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 20х25 мм	2	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718040895	#product-price-1341	UAH	T	2019-09-03 08:32:04.861	https://images.ua.prom.st/1193567707_w200_h200_filtratsionnaya-ustanovka-bestway.jpg	Фильтрационная установка Bestway 58383 Картриджная (2 м³/ч)	663	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0+Bestway+58383	T	65491143
+718247007	#product-price-2733 > span	UAH	T	2019-09-03 08:32:08.722	https://images.ua.prom.st/1193944738_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 160х90 мм	284	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247005	#product-price-2142 > span	UAH	T	2019-09-03 08:32:12.626	https://images.ua.prom.st/1193944251_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 90х63 мм	49	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718247000	#product-price-2738 > span	UAH	T	2019-09-03 08:32:16.738	https://images.ua.prom.st/1193943656_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 60х32 мм	30	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246999	#product-price-2140 > span	UAH	T	2019-09-03 08:32:20.793	https://images.ua.prom.st/1193943675_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 63х50 мм	20	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718246997	#product-price-2794 > span	UAH	T	2019-09-03 08:32:24.934	https://images.ua.prom.st/1193943665_w200_h200_reduktsionnoe-koltso-pvh.jpg	Редукционное кольцо ПВХ ERA 63х25 мм	26	0	https://aquapolis.ua/redukcionnoe-kolco-pvh-era-20-160-mm.html	T	45983313
+718041537	#product-price-1621 > span	UAH	T	2019-09-03 08:32:25.374	https://images.ua.prom.st/1193594842_w200_h200_kartridzh-bestway-58093.jpg	Картридж Bestway 58093 (I)	111	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%9A%D0%B0%D1%80%D1%82%D1%80%D0%B8%D0%B4%D0%B6+Bestway+58093	T	65491143
+718040534	#product-price-1352	UAH	T	2019-09-03 08:32:25.851	https://images.ua.prom.st/1193552523_w200_h200_filtratsionnaya-ustanovka-bestway.jpg	Фильтрационная установка Bestway 58391 Картриджная (9 м³/ч)	2678	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0+Bestway+58391	T	65491143
+718040533	#product-price-3188 > span	UAH	T	2019-09-03 08:32:26.413	https://images.ua.prom.st/1193552519_w200_h200_filtr-dlya-spa-bassejnov.jpg	Фильтр для СПА-бассейнов Ique 2100-CDL Capri	1188	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80+%D0%B4%D0%BB%D1%8F+%D0%A1%D0%9F%D0%90-%D0%B1%D0%B0%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%BE%D0%B2+Ique+2100-CDL+Capri	T	65491143
+718040526	#product-price-2283 > span	UAH	T	2019-09-03 08:32:26.963	https://images.ua.prom.st/1193551674_w200_h200_filtr-dlya-spa-bassejnov.jpg	Фильтр для СПА-бассейнов Ique Eden 2310-EP	2600	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80+%D0%B4%D0%BB%D1%8F+%D0%A1%D0%9F%D0%90-%D0%B1%D0%B0%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%BE%D0%B2+Ique+Eden+2310-EP	T	65491143
+718040525	#product-price-2282 > span	UAH	T	2019-09-03 08:32:27.515	https://images.ua.prom.st/1193551030_w200_h200_filtr-dlya-spa-bassejnov.jpg	Фильтр для СПА-бассейнов Ique Corsica 2000-CFL	1378	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80+%D0%B4%D0%BB%D1%8F+%D0%A1%D0%9F%D0%90-%D0%B1%D0%B0%D1%81%D1%81%D0%B5%D0%B9%D0%BD%D0%BE%D0%B2+Ique+Corsica+2000-CFL	T	65491143
+718040524	#product-price-1343 > span	UAH	T	2019-09-03 08:32:28.06	https://images.ua.prom.st/1193551026_w200_h200_filtratsionnaya-ustanovka-bestway.jpg	Фильтрационная установка Bestway 58386/58117 Картриджная (3 м³/ч)	915	0	https://aquapolis.ua/catalogsearch/result/?q=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80%D0%B0%D1%86%D0%B8%D0%BE%D0%BD%D0%BD%D0%B0%D1%8F+%D1%83%D1%81%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%BA%D0%B0+Bestway+58386	T	65491143
+766077307	#product-price-4580 > span	UAH	T	2019-09-03 08:32:31.232	https://images.ua.prom.st/1296863350_w200_h200_klej-dlya-trub.jpg	Клей для труб ПВХ Bailey L-6023 946мл	424	0	https://aquapolis.ua/klej-dlja-trub-pvh-bailey-l-6023.html	T	45978223
+766077306	#product-price-4579 > span	UAH	T	2019-09-03 08:32:32.935	https://images.ua.prom.st/1296863349_w200_h200_klej-dlya-trub.jpg	Клей для труб ПВХ Bailey L-5023 946мл (для больших диаметров ПВХ труб)	468	0	https://aquapolis.ua/klej-dlja-trub-pvh-bailey-l-5023-946ml-bolshie-diametry.html	T	45978223
+718250139	#product-price-1153 > span	UAH	T	2019-09-03 08:32:34.009	https://images.ua.prom.st/1194035126_w200_h200_zhidkij-pvh-cefil.jpg	Жидкий ПВХ Cefil PVC Liquide темно-голубой	1032	0	https://aquapolis.ua/zhidkij-pvh-cefil-pvc-liquide-temno-goluboj.html	T	45978223
+718250137	#product-price-1152 > span	UAH	T	2019-09-03 08:32:35.179	https://images.ua.prom.st/1194031781_w200_h200_zhidkij-pvh-cefil.jpg	Жидкий ПВХ Cefil PVC Transparente прозрачный	916	0	https://aquapolis.ua/zhidkij-pvh-cefil-pvc-transparente-prozrachnyj.html	T	45978223
+\.
+
+
+--
+-- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.groups
+    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: products_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: fktk0w0k1mrif467aywwbccg7oo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT fktk0w0k1mrif467aywwbccg7oo FOREIGN KEY (group_id) REFERENCES public.groups(id);
+
+
+--
+-- Name: SCHEMA public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
